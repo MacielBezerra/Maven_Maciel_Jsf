@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      template="/templates/template.xhtml">
+      
+      <!-- Tag para injetar no template  -->
+      <ui:define name="corpo">
+       <p:tabMenu activeIndex="5" style="margin-top:2cm;margin-left:1cm;height:460px; width:1250px; position:fixed">					
+	 				<p:menuitem value="Página Inicial"  
+	 							style="font-weight:bold;font-size:medium;height:50px;height:18px;"
+	 							url="pagina_inicial.jsf">		
+	 				</p:menuitem>
+	 		
+	 				<p:menuitem value="Cliente" 
+	 							icon="ui-icon-person"
+	 							style="font-weight:bold;font-size:medium;height:20px;height:18px"
+	 							url="cliente.jsf">
+	 				</p:menuitem>
+	 				  
+	 				<p:menuitem value="Funcionário" 
+    							url= "funcionario.jsf" 
+    							icon="ui-icon-person" 
+    							style="font-weight:bold;font-size:medium;height:18px" />
+    							
+    				<p:menuitem value="Produto" 
+    							url="produto.jsf" 
+    							icon="ui-icon-clipboard" 
+    							style="font-weight:bold;font-size:medium;height:18px" />		  
+    				<p:menuitem value="Estoque" 
+    							url="estoque.jsf" 
+    							icon="ui-icon-script" 
+    							style="font-weight:bold;font-size:medium;height:18px"/>		
+    				<p:menuitem value="Venda" 
+    							url="venda.jsf" 
+    							icon="ui-icon-cart" 
+    							style="font-weight:bold;font-size:medium;height:18px"/> 	    
+			</p:tabMenu>
+      </ui:define>
+</ui:composition>

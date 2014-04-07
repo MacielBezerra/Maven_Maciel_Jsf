@@ -1,0 +1,1 @@
+<jsp:forward page="templates/template.jsf"></jsp:forward>

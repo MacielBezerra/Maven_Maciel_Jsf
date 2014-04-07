@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      template="/templates/template.xhtml"> 
+	
+	  <ui:define name="corpo">
+       		<p:tabMenu activeIndex="1" style="margin-top:2cm;margin-left:1cm;height:460px; width:1250px; position:fixed">					
+	 				<p:menuitem value="Página Inicial"  
+	 							style="font-weight:bold;font-size:medium;height:18px;"
+	 							url="pagina_inicial.jsf">		
+	 				</p:menuitem>
+	 		
+	 				<p:menuitem value="Cliente" 
+	 							icon="ui-icon-person"
+	 							style="font-weight:bold;font-size:medium;height:18px"
+	 							url="cliente.jsf">
+	 				</p:menuitem>
+	 				  
+	 				<p:menuitem value="Funcionário" 
+    							url= "funcionario.jsf" 
+    							icon="ui-icon-person" 
+    							style="font-weight:bold;font-size:medium;height:18px" />
+    							
+    				<p:menuitem value="Produto" 
+    							url="produto.jsf" 
+    							icon="ui-icon-clipboard" 
+    							style="font-weight:bold;font-size:medium;height:18px" />		  
+    				<p:menuitem value="Estoque" 
+    							url="estoque.jsf" 
+    							icon="ui-icon-script" 
+    							style="font-weight:bold;font-size:medium;height:18px"/>		
+    				<p:menuitem value="Venda" 
+    							url="venda.jsf" 
+    							icon="ui-icon-cart" 
+    							style="font-weight:bold;font-size:medium;height:18px"/> 	    
+			</p:tabMenu>
+			
+			<p:tabMenu activeIndex="1" style="margin-left:1.3cm;margin-top:3.6cm;height:386px;position:absolute;width:1220px">
+				<p:menuitem value="Cadastrar"  
+	 							style="font-weight:bold;font-size:medium;height:18px"
+	 							url="cadastro_cliente.jsf">		
+	 			</p:menuitem>
+	 			<p:menuitem value="Pesquisar"  
+	 							style="font-weight:bold;font-size:medium;height:18px;"
+	 							url="pesquisar_cliente.jsf">		
+	 			</p:menuitem>
+			</p:tabMenu>
+			
+			<h:form style="margin-top:6cm;margin-left:2cm;height:18px;weight:17px;position:absolute ">
+				
+					<!-- Campo pesquisa -->
+				<h:outputText value="Nome: " style="position:absolute;margin-top:-0.8cm;margin-left:0.1cm"/>
+				<p:inputText style="position:absolute;margin-top:-1cm;margin-left:1.3cm"/>
+					
+					<!-- botao de pesquisa -->
+				<p:commandButton icon="ui-icon-search" style="position:absoute;margin-left:7cm;margin-top:-1.04cm;height:34px;weight:18px">
+				</p:commandButton>
+				
+					<!-- formulário de listagem de clientes -->
+				<p:dataTable var="client" id="datatable" value="#{clienteController.listar()}" paginator="true" rows="5">
+					<f:facet name="header">
+					  Lista de Clientes
+					</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="ID" style="font-size:medium" />
+						</f:facet>
+						<h:outputText value="#{client.id}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="NOME" style="font-size:medium" />
+						</f:facet>
+						<h:outputText value="#{client.nome}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="SOBRENOME" style="font-size:medium" />
+						</f:facet>
+						<h:outputText value="#{client.sobrenome}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="CIDADE" style="font-size:medium" />
+						</f:facet>
+						<h:outputText value="#{client.cidade}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="AÇÕES" style="font-size:medium" />
+						</f:facet>
+						
+						<p:commandButton icon="ui-icon-tag" 
+										 style="height:19px;weight:12px"
+										 onclick="formulario_editar.xhtml">	
+							
+						</p:commandButton>
+						
+						<p:commandButton icon="ui-icon-trash" 
+										 style="height:19px;weight:12px" 
+										 actionListener="#{clienteController.deletar(client)}"
+										 update="datatable"
+										 onclick="return confirm('Tem certeza que deseja exlcluir o cliente #{client.nome}?')">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				</h:form>
+				
+				
+				<!-- formulario para editar -->
+			<h:form style="position:absolute;margin-left:5cm;margin-top:2cm;">
+				<p:panel header="Editar Cliente">	
+						<h:panelGrid style="height:38px;weight:12px">
+							<h:outputText value="Nome: " 
+							 style="height:18px;width:18px;"/>
+							 <p:inputText value="#{clienteController.cliente.nome}" />
+						
+						</h:panelGrid>
+				</p:panel>
+			</h:form>	
+					</ui:define>
+ 
+</ui:composition>

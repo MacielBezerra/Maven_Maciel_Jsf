@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      template="/templates/template.xhtml"> 
+	
+	<ui:define name="corpo">
+			<p:tabMenu activeIndex="1" style="margin-top:2cm;margin-left:1cm;height:460px; width:1250px; position:fixed">					
+	 				<p:menuitem value="Página Inicial"  
+	 							style="font-weight:bold;font-size:medium;height:18px;"
+	 							url="pagina_inicial.jsf">		
+	 				</p:menuitem>
+	 		
+	 				<p:menuitem value="Cliente" 
+	 							icon="ui-icon-person"
+	 							style="font-weight:bold;font-size:medium;height:18px"
+	 							url="cliente.jsf">
+	 							
+	 							
+	 				</p:menuitem>
+	 				  
+	 				<p:menuitem value="Funcionário" 
+    							url= "funcionario.jsf" 
+    							icon="ui-icon-person" 
+    							style="font-weight:bold;font-size:medium;height:18px" />
+    							
+    				<p:menuitem value="Produto" 
+    							url="produto.jsf" 
+    							icon="ui-icon-clipboard" 
+    							style="font-weight:bold;font-size:medium;height:18px" />		  
+    				<p:menuitem value="Estoque" 
+    							url="estoque.jsf" 
+    							icon="ui-icon-script" 
+    							style="font-weight:bold;font-size:medium;height:18px"/>		
+    				<p:menuitem value="Venda" 
+    							url="venda.jsf" 
+    							icon="ui-icon-cart" 
+    							style="font-weight:bold;font-size:medium;height:18px"/> 	    
+			</p:tabMenu>
+			
+			<p:tabMenu style="margin-left:1.3cm;margin-top:3.6cm;height:380px;position:absolute;width:1220px">
+				<p:menuitem value="Cadastrar"  
+	 							style="font-weight:bold;font-size:medium;height:18px"
+	 							url="cadastro_cliente.jsf">		
+	 			</p:menuitem>
+	 			<p:menuitem value="Pesquisar"  
+	 							style="font-weight:bold;font-size:medium;height:18px;"
+	 							url="pesquisar_cliente.jsf">		
+	 			</p:menuitem>
+			</p:tabMenu>
+			
+			<h:form id="form" style="margin-top:5.2cm;margin-left:1.5cm;position:absolute">
+			
+				<h:outputText value="Nome: " 
+							 style="height:18px;width:18px;"/>
+				<p:inputText style="margin-left:0.9cm;position:absolute;margin-top:-0.2cm"
+							value="#{clienteController.cliente.nome}"/><br/>
+							
+				<h:outputText value="Sobrenome: " 
+							 style="margin-top:0.7cm;position:absolute"/>
+				<p:inputText style="margin-left:2.1cm;position:absolute;margin-top:0.5cm"
+							 value="#{clienteController.cliente.sobrenome}"/><br/>
+							 
+				<h:outputText value="Cidade: " 
+							 style="margin-top:1.3cm;position:absolute"/>
+				<p:inputText style="margin-left:2.1cm;position:absolute;margin-top:1.1cm"
+							 value="#{clienteController.cliente.cidade}"/>
+				
+				<p:commandButton value="Cadastrar" 
+								style="position:absolute;margin-top:2.2cm;margin-left:3cm;font-size:15px"
+								actionListener="#{clienteController.salvar()}" update="form">
+				</p:commandButton>  
+			</h:form>
+	</ui:define>
+</ui:composition>
